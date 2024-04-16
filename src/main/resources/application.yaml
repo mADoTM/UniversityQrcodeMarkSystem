@@ -1,0 +1,13 @@
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5432/marks
+    driver-class-name: org.postgresql.Driver
+    username: postgres
+    password: root
+  jpa:
+    generate-ddl: true
+    database: postgresql
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
+
+secret-expiration:
+  cron: "3 * * * * ?"

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <title>Fetch API Image Example</title>
+</head>
+<body>
+<h1>Fetch API Image Example</h1>
+<button id="fetch-image-button">Fetch Image</button>
+<div id="image-container"></div>
+<script>
+    function fetchImage() {
+        fetch("http://localhost:8080/qrcode", {
+            method: "GET"
+        })
+            .then((response) => response.blob())
+            .then((blob) => {
+                document.getElementById("image-container").innerHTML = "";
+                const imageUrl = URL.createObjectURL(blob);
+                const imageElement = document.createElement("img");
+                imageElement.src = imageUrl;
+                const container = document.getElementById("image-container");
+                container.appendChild(imageElement);
+            })
+            .catch((error) => console.error(error));
+    }
+    const button = document.getElementById("fetch-image-button");
+    button.addEventListener("click", fetchImage);
+    setInterval(fetchImage, 5000)
+</script>
+</body>
+</html>
